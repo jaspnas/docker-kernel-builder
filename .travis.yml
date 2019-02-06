@@ -17,3 +17,5 @@ deploy:
   script: make push-latest
 - provider: script
   script: make push-tag VERSION=$TRAVIS_TAG
+  on:
+    tags: true
