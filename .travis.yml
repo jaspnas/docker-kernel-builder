@@ -10,7 +10,7 @@ install:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 script:
-- travis_wait make build
+- make build
 
 deploy:
 - provider: script
