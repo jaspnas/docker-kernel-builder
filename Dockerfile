@@ -16,7 +16,9 @@ RUN apt-get -y -q update         \
     libncurses-dev               \
     libssl-dev                   \
     wget                         \
- && apt-get clean
+ && apt-get clean                \
+ && rm -rf /var/lib/apt/lists/*  \
+ && update-alternatives --install /usr/bin/gcc gcc /usr/bin/GCC_VERSION 10
 
 # Set up environment variables
 ENV CCACHE_DIR=/ccache       \

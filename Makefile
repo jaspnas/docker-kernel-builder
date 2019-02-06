@@ -1,6 +1,6 @@
 REGISTRY=luxas
-# gcc-7 is also supported
-GCC_VERSION?=gcc-5
+# gcc-5 and gcc-8 are also supported
+GCC_VERSION?=gcc-7
 VERSION?=$(shell date --rfc-3339=date)
 TAG=${GCC_VERSION}-${VERSION}
 

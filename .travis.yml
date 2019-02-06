@@ -5,6 +5,7 @@ services:
 env:
 - GCC_VERSION=gcc-5
 - GCC_VERSION=gcc-7
+- GCC_VERSION=gcc-8
 
 install:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin

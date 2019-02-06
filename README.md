@@ -2,9 +2,9 @@
 
 ![Travis CI](https://api.travis-ci.com/luxas/docker-kernel-builder.svg?branch=master)
 
-Linux kernel build environment in Docker. Two images are available, one with
-GCC 7 for newer kernels, and one with GCC 5 for older ones. Travis CI builds
-the image on a weekly basis to keep it fresh.
+Linux kernel build environment in Docker. Three images are available, with
+GCC 7 (default), GCC 5 and GCC 8. Travis CI builds the image on a weekly basis
+to keep it fresh.
 
 https://hub.docker.com/r/luxas/kernel-builder
 
