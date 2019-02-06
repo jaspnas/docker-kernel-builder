@@ -1,4 +1,4 @@
-# docker-kernel-builder
+# luxas/kernel-builder
 
 ![Travis CI](https://api.travis-ci.com/luxas/docker-kernel-builder.svg?branch=master)
 
