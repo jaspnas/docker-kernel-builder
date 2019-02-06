@@ -27,7 +27,7 @@ ENV CCACHE_DIR=/ccache       \
 
 # Fetch the latest kernel source
 RUN mkdir -p ${SRC_DIR} ${CCACHE_DIR} ${DIST_DIR}  \
-   && git clone ${LINUX_REPO_URL} ${LINUX_DIR}
+   && git clone --depth 10 --no-single-branch ${LINUX_REPO_URL} ${LINUX_DIR}
 RUN cd ${LINUX_DIR} && git fetch --tags
 
 WORKDIR ${LINUX_DIR}
