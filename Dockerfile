@@ -9,7 +9,7 @@ RUN apt-get -y -q update         \
     build-essential              \
     ccache                       \
     flex                         \
-    gcc-7                        \
+    GCC_VERSION                  \
     git                          \
     kmod                         \
     libelf-dev                   \
