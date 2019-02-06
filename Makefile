@@ -1,12 +1,21 @@
 REGISTRY=luxas
 # gcc-7 is also supported
 GCC_VERSION?=gcc-5
-TAG=${GCC_VERSION}-$(shell date --rfc-3339=date)
+VERSION?=$(shell date --rfc-3339=date)
+TAG=${GCC_VERSION}-${VERSION}
 
 all: build
 build:
 	sed -e "s|GCC_VERSION|${GCC_VERSION}|g" Dockerfile | \
 		docker build -t ${REGISTRY}/kernel-builder:${TAG} -f - .
 
-push: build
+push-latest: build
+	docker tag ${REGISTRY}/kernel-builder:${TAG} ${REGISTRY}/kernel-builder:${GCC_VERSION}
+	docker push ${REGISTRY}/kernel-builder:${GCC_VERSION}
+ifeq ($(GCC_VERSION),gcc-7)
+	docker tag ${REGISTRY}/kernel-builder:${TAG} ${REGISTRY}/kernel-builder:latest
+	docker push ${REGISTRY}/kernel-builder:latest
+endif
+
+push-tag: build
 	docker push ${REGISTRY}/kernel-builder:${TAG}

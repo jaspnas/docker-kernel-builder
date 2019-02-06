@@ -9,8 +9,10 @@ before_install:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 script:
-- make build
+- travis_wait make build
 
 deploy:
-  provider: script
-  script: make push
+- provider: script
+  script: make push-latest
+- provider: script
+  script: make push-tag VERSION=$TRAVIS_TAG
