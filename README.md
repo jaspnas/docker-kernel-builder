@@ -1,40 +1,23 @@
 # docker-kernel-builder
 
-Kernel build environment in Docker
+![Travis CI](https://api.travis-ci.com/luxas/docker-kernel-builder.svg?branch=master)
 
-https://registry.hub.docker.com/u/moul/kernel-builder/
+Linux kernel build environment in Docker. Two images are available, one with
+GCC 7 for newer kernels, and one with GCC 5 for older ones. Travis CI builds
+the image on a weekly basis to keep it fresh.
 
-## Projects using docker-kernel-builder
-
-- https://github.com/scaleway/kernel-tools
-- https://github.com/moul/travis-docker/tree/master/uml-builder
+https://hub.docker.com/r/luxas/kernel-builder
 
 ## Examples
 
-Checkout `v4.3` stable branch of the kernel and do a `make menuconfig`
+Checkout `v4.19` stable branch of the kernel and compile it along with all modules 
 
-```
-docker run -it --rm -v $(pwd)/.config:/tmp/.config moul/kernel-builder \
-	/bin/bash -xec ' \
-		git fetch --tags && git checkout v3.19 && \
-		cp /tmp/.config .config && \
-		make oldconfig && \
-		cp .config /tmp/.config \
-	'
-```
-
-Checkout `v3.19` stable branch of the kernel and do a `make menuconfig` with `armhf` cross tools
-
-```
-docker run -it --rm -v $(pwd)/.config:/tmp/.config \
-	-e ARCH=arm -e CROSS_COMPILE="ccache arm-linux-gnueabihf-" \
-	moul/kernel-builder \
-	/bin/bash -xec ' \
-		git fetch --tags && git checkout v3.19 && \
-		cp /tmp/.config .config && \
-		make oldconfig && \
-		cp .config /tmp/.config \
-	'
+```bash
+docker run -it -v $(pwd)/.config:/tmp/.config luxas/kernel-builder:gcc-7 /bin/bash -c "\
+	git fetch --tags && git checkout v4.19 && \
+	cp /tmp/.config .config && \
+	make oldconfig && \
+	make -j16 && make modules_install"
 ```
 
 ## License
