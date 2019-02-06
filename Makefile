@@ -6,7 +6,7 @@ TAG=${GCC_VERSION}-$(shell date --rfc-3339=date)
 all: build
 build:
 	sed -e "s|GCC_VERSION|${GCC_VERSION}|g" Dockerfile | \
-		docker build -t ${REGISTRY}/kernel-builder:${TAG} .
+		docker build -t ${REGISTRY}/kernel-builder:${TAG} -f - .
 
 push: build
 	docker push ${REGISTRY}/kernel-builder:${TAG}
