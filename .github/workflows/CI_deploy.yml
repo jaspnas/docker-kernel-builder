@@ -16,5 +16,5 @@ jobs:
     - name: Docker login
       run: docker login --username jaspnas --password ${{ secrets.DOCKER_TOKEN }}
       
-    - name: Install dependencies
+    - name: Build and push
       run: make push-latest
